@@ -1,0 +1,10 @@
+.title {
+    font-weight: bold;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    background-image: url(image/bg.jpg);
+    background-size: cover;
+}
