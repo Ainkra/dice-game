@@ -39,3 +39,16 @@ body {
 .dice {
     font-size: 100px;
 }
+
+.btn:hover {
+    background-color: rgb(138, 138, 138);
+}
+
+.reload {
+    background-color: rgb(76, 43, 199);
+    margin-top: 10px;
+}
+
+.reload:hover {
+    background-color: rgb(121, 175, 255);
+}
