@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/abab09da6b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/abab09da6b.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body class="bg-dark">
@@ -25,18 +24,20 @@
                             <h1 class="card-title text-white">PLAYER 1</h1>
                             <hr>
                             <br>
-                            <h3 class="card-text text-white">SCORE ACTUEL</h3>
+                            <h3 class="card-text text-white">CURRENT SCORE</h3>
                             <h4 class="score1 card-text text-white">0</h4>
                             <br>
                             <h3 class="card-text text-white">POINT(S)</h3>
                             <h4 class="point1 card-text text-white">0</h4>
                         </div>
                 </div>
-                <div class="btn card dice-card">
+                <div class="dice-card btn card">
                         <div class="card-body text-white">
-                            <p class="dice">?</p>
+                            <p id="playdice">?</p>
                             <br>
                             <h4>Cliquez pour jouer !</h4>
+                            <br>
+                            <div class="reload btn text-white"><i class="fa-solid fa-arrows-rotate"></i> Relancer une partie</div>
                         </div>
                 </div>
                 <div class="card text-white">
@@ -44,7 +45,7 @@
                         <h1 class="card-title text-white">PLAYER 2</h1>
                         <hr>
                         <br>
-                        <h3 class="card-text text-white">SCORE ACTUEL</h3>
+                        <h3 class="card-text text-white">CURRENT SCORE</h3>
                         <h4 class="score2 card-text text-white">0</h4>
                         <br>
                         <h3 class="card-text text-white">POINT(S)</h3>
@@ -54,8 +55,9 @@
         </div>
     </main>
     <footer class="d-flex justify-content-center">
-        <div class="reload btn text-white"><i class="fa-solid fa-arrows-rotate"></i> Relancer une partie</div>
+        
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
 
