@@ -13,21 +13,24 @@
 let diceRoll = document.querySelector('#playdice');
 
 //####PLAYERONE####
-let score1 = document.querySelector("score1");
-let point1 = document.querySelector("point1");
+let score1 = document.querySelector(".score1");
+let point1 = document.querySelector(".point1");
 
 //####PLAYERTWO####
-let score2 = document.querySelector("score2");
-let point2 = document.querySelector("point2");
+let score2 = document.querySelector(".score2");
+let point2 = document.querySelector(".point2");
 
 //#####RELOAD#####
+let reloadGame = document.querySelector(".reload")
 
 //############################
-//         FUNCTIONS
+//         FUNCTIONS/EVENTS
 //############################
 
-
-diceRoll.addEventListener("click", () => {
+// ######DICE ROLLING######
+function diceRollSystem() {
+    
+    diceRoll.addEventListener("click", () => {
     
     randomDice = Math.floor(Math.random() * 7);
 
@@ -56,5 +59,24 @@ diceRoll.addEventListener("click", () => {
             diceRoll.innerHTML = '<i class="fa-solid fa-dice-six"></i>';
             console.log(randomDice);
             break;
-    }
+        }
+    }, 5000);
+}
+
+let firstStart = () => {
+    let playerOne = null;
+    let playerTwo = null;
+    
+    diceRollSystem.call()
+}
+
+// ######RESTART THE GAME######
+reloadGame.addEventListener("click", () => {
+    diceRoll.innerHTML = "?";
+    score1.innerHTML = "0";
+    score2.innerHTML = "0";
+    point1.innerHTML = "0";
+    point2.innerHTML = "0";
 });
+
+diceRollSystem();
