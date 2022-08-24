@@ -1,5 +1,27 @@
-* {
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Lato, Helvetica, sans-serif;
+    background: linear-gradient(to right, #3600c9, #080808);
+    object-fit: cover;
+    background-image: url(image/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 0;
 }
 
 .title {
@@ -8,12 +30,8 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-body {
-    object-fit: cover;
-    background-image: url(image/bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 0;
+.navbar {
+    padding-top: -10%;
 }
 
 .card-group {
