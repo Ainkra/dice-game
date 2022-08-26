@@ -77,3 +77,13 @@ footer {
     margin-top: 50px;
 }
 
+.hold {
+    background-color: #2ECC71;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.hold:hover {
+    background-color: rgb(173, 255, 200);
+}
+
