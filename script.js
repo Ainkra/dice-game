@@ -1,5 +1,5 @@
 //#####################
-//  DÉS:
+//  RESSOURCES:
 //
 //  <i class="fa-solid fa-dice-one"></i>
 //  <i class="fa-solid fa-dice-two"></i>
@@ -9,70 +9,92 @@
 //  <i class="fa-solid fa-dice-six"></i>
 //#####################
 
-let players = [
+//#####################
+//  ALL QUERY SELECTORS
+//#####################
+
+var players = [
     document.querySelector(".player1"),
     document.querySelector(".player2")
 ];
 
-var scores = [
-    document.querySelector(".score1"),
-    document.querySelector(".score2")
+var round = [
+    document.querySelector(".round1"),
+    document.querySelector(".round2")
 ];
 
-var points = [
-    document.querySelector(".point1"),
-    document.querySelector(".point2")
+var global = [
+    document.querySelector(".global1"),
+    document.querySelector(".global2")
 ]
 
+let playDice = document.querySelector("#playdice");
+let hold = document.querySelector(".hold")
+//#####################
+//  TURN STORER
+//#####################
+
 var playerTurn = 0;
+
+//#####################
+//  RESTART THE GAME
+//#####################
 
 let reload = document.querySelector(".reload").addEventListener("click", () => {
     Init();
     console.log("La partie a bien été redémarrée !");
 });
 
+//#####################
+//  INIT FUNCTION
+//#####################
+
 function Init() {
-    scores[0].innerHTML  = 0;
-    scores[1].innerHTML  = 0;
-    points[0].innerHTML  = 0;
-    points[1].innerHTML  = 0;
+    round[0].innerHTML  = 0;
+    round[1].innerHTML  = 0;
+    global[0].innerHTML  = 0;
+    global[1].innerHTML  = 0;
     playDice.innerHTML = "?"
 }
 
-let playDice = document.querySelector("#playdice");
+//#####################
+//  MAIN FUNCTION
+//
+// Handling the totality
+// of the game.
+//#####################
 
 playDice.addEventListener("click", () => {
     console.log("cliqué !")
-    turnPlayerHandler();
 
-    let diceRandomizerHandler = Math.floor(Math.random() * 7);
+    let diceRandomizerHandler = Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.
     console.log(`Le dé à été lancé ! On obtient: ${diceRandomizerHandler}`);
 
     if(playerTurn === 0) {
         switch(diceRandomizerHandler) {
             case 1:
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                scores[0].innerHTML = `${+1}`;
+                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>'; // DOM add dice img.
+                round[0].innerHTML = 1;
                 break;
             case 2:
                 playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>';
-                scores[0].innerHTML = `${+2}`;
+                round[0].innerHTML = 2;
                 break;
             case 3:
                 playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>';
-                scores[0].innerHTML = `${+3}`;
+                round[0].innerHTML = 3;
                 break;
             case 4:
                 playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>';
-                scores[0].innerHTML = `${+4}`;
+                round[0].innerHTML = 4;
                 break;
             case 5:
                 playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>';
-                scores[0].innerHTML = `${+5}`;
+                round[0].innerHTML = 5;
                 break;
             case 6:
                 playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>';
-                scores[0].innerHTML = `${+6}`;
+                round[0].innerHTML = 6;
                 break;
         }
 
@@ -80,44 +102,53 @@ playDice.addEventListener("click", () => {
             switch(diceRandomizerHandler) {
                 case 1:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                    scores[1].innerHTML = `${+1}`;
+                    round[1].innerHTML = 1;
                     break;
                 case 2:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>';
-                    scores[1].innerHTML = `${+2}`;
+                    round[1].innerHTML = 2;
                     break;
                 case 3:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>';
-                    scores[1].innerHTML = `${+3}`;
+                    round[1].innerHTML = 3;
                     break;
                 case 4:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>';
-                    scores[1].innerHTML = `${+4}`;
+                    round[1].innerHTML = 4;
                     break;
                 case 5:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>';
-                    scores[1].innerHTML = `${+5}`;
+                    round[1].innerHTML = 5;
                     break;
                 case 6:
                     playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>';
-                    scores[1].innerHTML = `${+6}`;
+                    round[1].innerHTML = 6;
                     break;
             }
     }
 })
 
+//#####################
+//  TURN CHANGER
+//
+// Get current turn, and
+// Change them.
+//#####################
 
-function turnPlayerHandler() {
+hold.addEventListener("click", () => {
     if(playerTurn !== 0) {
+        global[0] = diceRandomizerHandler;
+        console.log(global[0]);
         playerTurn = 0;
         console.log("Au tour du premier joueur !")
+        
     } else if(playerTurn !== 1) {
+        global[1] = diceRandomizerHandler;
+        console.log(global[1]);
         playerTurn = 1;
         console.log("Au tour du deuxième joueur !")
     }
-
-    console.log(playerTurn)
-}
+})
 
 
 
