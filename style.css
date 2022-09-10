@@ -49,6 +49,10 @@ body {
     background-color: rgba(44, 44, 44, 0);
 }
 
+.card-title {
+    margin-top: 20px;
+}
+
 .card-height {
     height: 1fr;
     text-align: center;
@@ -85,5 +89,9 @@ footer {
 
 .hold:hover {
     background-color: rgb(173, 255, 200);
+}
+
+.global1, .global2 {
+    padding-bottom: 20px;
 }
 

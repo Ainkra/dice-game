@@ -30,12 +30,22 @@ var globalScore = [
 ]
 
 var randomizer;
+
 /*###############
 BUTTONS SELECTORS
 #################*/
 
 let playDice = document.querySelector("#playdice");
 let hold = document.querySelector(".hold");
+let cardone = document.querySelector(".cardone");
+let cardtwo = document.querySelector(".cardtwo")
+let cardtitle = document.querySelector(".card-title")
+
+/*###############
+    AUDIO
+#################*/
+
+var diceAudio = new Audio('dice.mp3');
 
 //#####################
 //  INIT FUNCTION
@@ -69,93 +79,106 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
     console.log("La partie a bien été redémarrée !");
 });
 
-playDice.addEventListener("click", () => {
-    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.
+//#####################
+//    DICE ROLLING
+//#####################
+setInterval(
+    playDice.addEventListener("click", () => {
+        diceAudio.play();
+        randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.
+    
+        console.log(`Chiffre obtenu: ${randomizer}`);
+    
+        switch(randomizer) {
+            case 1:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                    round[0].innerHTML = 0; // DOM add dice img.
+                    playerTurn = 1;
+                    randomizer = 0;
+                    console.log("Au tour du deuxième joueur !")
+                } 
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                    round[1].innerHTML = 0; // DOM add dice img.
+                    playerTurn = 0;
+                    randomizer = 0;
+                    console.log("Au tour du premier joueur !")
+                }
+                break;
+    
+            case 2:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                    round[0].innerHTML = 2;
+                } 
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                    round[1].innerHTML = 2;
+                }
+                break;
+    
+            case 3:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                    round[0].innerHTML = 3;
+                } 
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                    round[1].innerHTML = 3;
+                }
+                break;
+    
+            case 4:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                    round[0].innerHTML = 4;
+                }
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                    round[1].innerHTML = 4;
+                }
+                break;
+    
+            case 5:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                    round[0].innerHTML = 5;
+                } 
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                    round[1].innerHTML = 5;
+                }
+                break;
+    
+            case 6:
+                if(playerTurn === 0) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                    round[0].innerHTML = 6;
+                } 
+                
+                if(playerTurn === 1) {
+                    playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                    round[1].innerHTML = 6;
+                }
+    
+                break;
+        }
+    })
+, 3000);
 
-    console.log(`Chiffre obtenu: ${randomizer}`);
 
-    switch(randomizer) {
-        case 1:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                round[0].innerHTML = 0; // DOM add dice img.
-                playerTurn = 1;
-                randomizer = 0;
-                console.log("Au tour du deuxième joueur !")
-            } 
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                round[1].innerHTML = 0; // DOM add dice img.
-                playerTurn = 0;
-                randomizer = 0;
-                console.log("Au tour du premier joueur !")
-            }
-            break;
+//#####################
+//  HOLD ROUND POINT
+//#####################
 
-        case 2:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                round[0].innerHTML = 2;
-            } 
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                round[1].innerHTML = 2;
-            }
-            break;
-
-        case 3:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                round[0].innerHTML = 3;
-            } 
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                round[1].innerHTML = 3;
-            }
-            break;
-
-        case 4:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                round[0].innerHTML = 4;
-            }
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                round[1].innerHTML = 4;
-            }
-            break;
-
-        case 5:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                round[0].innerHTML = 5;
-            } 
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                round[1].innerHTML = 5;
-            }
-            break;
-
-        case 6:
-            if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                round[0].innerHTML = 6;
-            } 
-            
-            if(playerTurn === 1) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                round[1].innerHTML = 6;
-            }
-
-            break;
-    }
-});
-
+// background-color: rgba(44, 44, 44, 0.2); Not your turn
+// background-color: rgba(0, 255, 157, 0.2); your turn
 hold.addEventListener("click", () =>  {
 
     if(playerTurn === 0) {
@@ -164,6 +187,9 @@ hold.addEventListener("click", () =>  {
         randomizer = 0;
         round[0].innerHTML = 0;
         playerTurn = 1;
+        cardtitle.style.backgroundColor = "rgba(0, 255, 157, 0.2);";
+        cardone.style.backgroundColor = "rgba(44, 44, 44, 0.2)";
+
         console.log("Au tour du deuxième joueur !");
     } else if (playerTurn === 1) {
         globalScore[1] = globalScore[1] += randomizer;
@@ -171,14 +197,20 @@ hold.addEventListener("click", () =>  {
         round[1].innerHTML = 0;
         randomizer = 0;
         playerTurn = 0;
+        cardtitle.style.backgroundColor = "rgba(0, 255, 157, 0.2);";
+        cardtwo.style.backgroundColor = "rgba(44, 44, 44, 0.2)";
         console.log("Au tour du premier joueur !")
     }
 });
 
+//#####################
+//      END GAME
+//#####################
+
 function End() {
     if(globalScore[0] || globalScore[1] >= 100) {
     
-}
+    }
 }
 
 /*
