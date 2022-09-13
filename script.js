@@ -25,8 +25,13 @@ var global = [
 ];
 
 var globalScore = [
-    0,
-    0
+  0,
+  0
+]
+
+var roundScore = [
+  0,
+  0
 ]
 
 var randomizer;
@@ -62,6 +67,8 @@ function Init() {
     playerTurn           = 0;
     globalScore[0]       = 0;
     globalScore[1]       = 0;
+    roundScore[0]        = 0;
+    roundScore[1]        = 0;
     cardone.classList.remove("bg-success");
 }
 
@@ -99,6 +106,7 @@ function End() {
     setTimeout(Refresh, 3000);
   }
 
+
   console.log("Redémarré !")
 
 }
@@ -125,6 +133,7 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
                     round[0].innerHTML = 0; // DOM add dice img.
+                    roundScore[0] = 0;
                     playerTurn = 1;
                     randomizer = 0;
                     cardtwo.classList.add("bg-success")
@@ -134,6 +143,7 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
                 } else if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
                     round[1].innerHTML = 0; // DOM add dice img.
+                    roundScore[1] = 0;
                     playerTurn = 0;
                     randomizer = 0;
                     cardone.classList.add("bg-success")
@@ -145,13 +155,11 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
             case 2:
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                    round[0].innerHTML = 2;
                     diceAudio.play();
-                } 
+                }
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                    round[1].innerHTML = 2;
                     diceAudio.play();
                 }
                 break;
@@ -159,13 +167,11 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
             case 3:
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                    round[0].innerHTML = 3;
                     diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                    round[1].innerHTML = 3;
                     diceAudio.play();
                 }
                 break;
@@ -173,13 +179,11 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
             case 4:
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                    round[0].innerHTML = 4;
                     diceAudio.play();
                 }
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                    round[1].innerHTML = 4;
                     diceAudio.play();
                 }
                 break;
@@ -187,13 +191,11 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
             case 5:
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                    round[0].innerHTML = 5;
                     diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                    round[1].innerHTML = 5;
                     diceAudio.play();
                 }
                 break;
@@ -201,18 +203,25 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
             case 6:
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                    round[0].innerHTML = 6;
                     diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                    round[1].innerHTML = 6;
                     diceAudio.play();
                 }
     
                 break;
         }
+
+        if (playerTurn === 0) {
+          roundScore[0] = roundScore[0] + randomizer;
+          round[0].innerHTML = roundScore[0];
+        } else if(playerTurn === 1) {
+          roundScore[1] = roundScore[1] + randomizer;
+          round[1].innerHTML = roundScore[1];
+        }
+
     })
 
 
@@ -225,7 +234,7 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
 hold.addEventListener("click", () =>  {
 
     if(playerTurn === 0) {
-        globalScore[0] = globalScore[0] += randomizer;
+        globalScore[0] = globalScore[0] += roundScore[0];
         global[0].textContent = globalScore[0];
         randomizer = 0;
         round[0].innerHTML = 0;
@@ -234,8 +243,9 @@ hold.addEventListener("click", () =>  {
         cardone.classList.remove("bg-success");
         console.log("Au tour du deuxième joueur !");
         playDice.innerHTML = '?';
+        roundScore[0] = 0;
     } else if (playerTurn === 1) {
-        globalScore[1] = globalScore[1] += randomizer;
+        globalScore[1] = globalScore[1] += roundScore[1];
         global[1].textContent = globalScore[1];
         round[1].innerHTML = 0;
         randomizer = 0;
@@ -244,6 +254,7 @@ hold.addEventListener("click", () =>  {
         cardone.classList.add("bg-success");
         console.log("Au tour du premier joueur !");
         playDice.innerHTML = '?';
+        roundScore[1] = 0;
     }
 
     End();
