@@ -27,12 +27,12 @@ var global = [
 var globalScore = [
   0,
   0
-]
+];
 
 var roundScore = [
   0,
   0
-]
+];
 
 var randomizer;
 
@@ -123,106 +123,105 @@ let reload = document.querySelector(".reload").addEventListener("click", () => {
 //    DICE ROLLING
 //#####################
 
-    playDice.addEventListener("click", () => {
+playDice.addEventListener("click", () => {
+    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.    
+    console.log(`Chiffre obtenu: ${randomizer}`);
 
-        randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.    
-        console.log(`Chiffre obtenu: ${randomizer}`);
-    
-        switch(randomizer) {
-            case 1:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                    round[0].innerHTML = 0; // DOM add dice img.
-                    roundScore[0] = 0;
-                    playerTurn = 1;
-                    randomizer = 0;
-                    cardtwo.classList.add("bg-success")
-                    cardone.classList.remove("bg-success")
-                    console.log("Au tour du deuxième joueur !")
+    switch(randomizer) {
+        case 1:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                round[0].innerHTML = 0; // DOM add dice img.
+                roundScore[0] = 0;
+                playerTurn = 1;
+                randomizer = 0;
+                cardtwo.classList.add("bg-success")
+                cardone.classList.remove("bg-success")
+                console.log("Au tour du deuxième joueur !")
+            } else if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                round[1].innerHTML = 0; // DOM add dice img.
+                roundScore[1] = 0;
+                playerTurn = 0;
+                randomizer = 0;
+                cardone.classList.add("bg-success")
+                cardtwo.classList.remove("bg-success")
+                console.log("Au tour du premier joueur !")
+            }
+            break;
+            
+        case 2:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+            
+            if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+            break;
+            
+        case 3:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                diceAudio.play();
+            } 
+            
+            if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+            break;
 
-                } else if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
-                    round[1].innerHTML = 0; // DOM add dice img.
-                    roundScore[1] = 0;
-                    playerTurn = 0;
-                    randomizer = 0;
-                    cardone.classList.add("bg-success")
-                    cardtwo.classList.remove("bg-success")
-                    console.log("Au tour du premier joueur !")
-                }
-                break;
-    
-            case 2:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                
-                if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                break;
-    
-            case 3:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                } 
-                
-                if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                break;
-    
-            case 4:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                
-                if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                break;
-    
-            case 5:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                } 
-                
-                if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-                break;
-    
-            case 6:
-                if(playerTurn === 0) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                } 
-                
-                if(playerTurn === 1) {
-                    playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
-                    diceAudio.play();
-                }
-    
-                break;
-        }
+        case 4:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+            
+            if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+            break;
 
-        if (playerTurn === 0) {
-          roundScore[0] = roundScore[0] + randomizer;
-          round[0].innerHTML = roundScore[0];
-        } else if(playerTurn === 1) {
-          roundScore[1] = roundScore[1] + randomizer;
-          round[1].innerHTML = roundScore[1];
-        }
+        case 5:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                diceAudio.play();
+            } 
+            
+            if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
 
-    })
+            break;
+
+        case 6:
+            if(playerTurn === 0) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                diceAudio.play();
+            } 
+            
+            if(playerTurn === 1) {
+                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                diceAudio.play();
+            }
+
+            break;
+    }
+
+    if (playerTurn === 0) {
+      roundScore[0] = roundScore[0] + randomizer;
+      round[0].innerHTML = roundScore[0];
+    } else if(playerTurn === 1) {
+      roundScore[1] = roundScore[1] + randomizer;
+      round[1].innerHTML = roundScore[1];
+    }
+
+})
 
 
 //#####################
