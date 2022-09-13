@@ -35,17 +35,19 @@ var randomizer;
 BUTTONS SELECTORS
 #################*/
 
-let playDice = document.querySelector("#playdice");
-let hold = document.querySelector(".hold");
-let cardone = document.querySelector(".cardone");
-let cardtwo = document.querySelector(".cardtwo")
-let cardtitle = document.querySelector(".card-title")
+let playDice  = document.querySelector("#playdice");
+let hold      = document.querySelector(".hold");
+let cardone   = document.querySelector(".cardone");
+let cardtwo   = document.querySelector(".cardtwo")
+let playerone = document.querySelector(".player1");
+let playertwo = document.querySelector(".player2")
 
 /*###############
     AUDIO
 #################*/
 
-var diceAudio = new Audio('dice.mp3');
+var diceAudio = new Audio('./sounds/dice.mp3');
+var winAudio = new Audio('./sounds/win.mp3');
 
 //#####################
 //  INIT FUNCTION
@@ -56,10 +58,11 @@ function Init() {
     global[0].innerHTML  = 0;
     global[1].innerHTML  = 0;
     playDice.innerHTML   = "?";
-    randomizer = 0;
-    playerTurn = 0;
-    globalScore[0] = 0;
-    globalScore[1] = 0;
+    randomizer           = 0;
+    playerTurn           = 0;
+    globalScore[0]       = 0;
+    globalScore[1]       = 0;
+    cardone.classList.remove("bg-success");
 }
 
 Init();
@@ -71,22 +74,50 @@ Init();
 var playerTurn = 0;
 
 //#####################
+//      END GAME
+//#####################
+
+function ClearGame() {
+  cardone.classList.remove("bg-danger");
+  cardtwo.classList.remove("bg-danger");
+}
+
+function Refresh() {
+  location.reload();
+}
+
+function End() {
+  if(globalScore[0] >= 100)  {
+    cardtwo.classList.add("bg-danger");
+    cardone.classList.add("bg-success");
+    winAudio.play();
+    setTimeout(Refresh, 3000);
+  } else if(globalScore[1] >= 100) {
+    cardone.classList.add("bg-danger");
+    cardtwo.classList.add("bg-success");
+    winAudio.play();
+    setTimeout(Refresh, 3000);
+  }
+
+  console.log("Redémarré !")
+
+}
+
+//#####################
 //  RESTART THE GAME
 //#####################
 
 let reload = document.querySelector(".reload").addEventListener("click", () => {
-    Init();
-    console.log("La partie a bien été redémarrée !");
+  location.reload();
 });
 
 //#####################
 //    DICE ROLLING
 //#####################
-setInterval(
+
     playDice.addEventListener("click", () => {
-        diceAudio.play();
-        randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.
-    
+
+        randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.    
         console.log(`Chiffre obtenu: ${randomizer}`);
     
         switch(randomizer) {
@@ -96,14 +127,17 @@ setInterval(
                     round[0].innerHTML = 0; // DOM add dice img.
                     playerTurn = 1;
                     randomizer = 0;
+                    cardtwo.classList.add("bg-success")
+                    cardone.classList.remove("bg-success")
                     console.log("Au tour du deuxième joueur !")
-                } 
-                
-                if(playerTurn === 1) {
+
+                } else if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
                     round[1].innerHTML = 0; // DOM add dice img.
                     playerTurn = 0;
                     randomizer = 0;
+                    cardone.classList.add("bg-success")
+                    cardtwo.classList.remove("bg-success")
                     console.log("Au tour du premier joueur !")
                 }
                 break;
@@ -112,11 +146,13 @@ setInterval(
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
                     round[0].innerHTML = 2;
+                    diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
                     round[1].innerHTML = 2;
+                    diceAudio.play();
                 }
                 break;
     
@@ -124,11 +160,13 @@ setInterval(
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
                     round[0].innerHTML = 3;
+                    diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
                     round[1].innerHTML = 3;
+                    diceAudio.play();
                 }
                 break;
     
@@ -136,11 +174,13 @@ setInterval(
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
                     round[0].innerHTML = 4;
+                    diceAudio.play();
                 }
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
                     round[1].innerHTML = 4;
+                    diceAudio.play();
                 }
                 break;
     
@@ -148,11 +188,13 @@ setInterval(
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
                     round[0].innerHTML = 5;
+                    diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
                     round[1].innerHTML = 5;
+                    diceAudio.play();
                 }
                 break;
     
@@ -160,17 +202,18 @@ setInterval(
                 if(playerTurn === 0) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
                     round[0].innerHTML = 6;
+                    diceAudio.play();
                 } 
                 
                 if(playerTurn === 1) {
                     playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
                     round[1].innerHTML = 6;
+                    diceAudio.play();
                 }
     
                 break;
         }
     })
-, 3000);
 
 
 //#####################
@@ -187,31 +230,27 @@ hold.addEventListener("click", () =>  {
         randomizer = 0;
         round[0].innerHTML = 0;
         playerTurn = 1;
-        cardtitle.style.backgroundColor = "rgba(0, 255, 157, 0.2);";
-        cardone.style.backgroundColor = "rgba(44, 44, 44, 0.2)";
-
+        cardtwo.classList.add("bg-success");
+        cardone.classList.remove("bg-success");
         console.log("Au tour du deuxième joueur !");
+        playDice.innerHTML = '?';
     } else if (playerTurn === 1) {
         globalScore[1] = globalScore[1] += randomizer;
         global[1].textContent = globalScore[1];
         round[1].innerHTML = 0;
         randomizer = 0;
         playerTurn = 0;
-        cardtitle.style.backgroundColor = "rgba(0, 255, 157, 0.2);";
-        cardtwo.style.backgroundColor = "rgba(44, 44, 44, 0.2)";
-        console.log("Au tour du premier joueur !")
+        cardtwo.classList.remove("bg-success");
+        cardone.classList.add("bg-success");
+        console.log("Au tour du premier joueur !");
+        playDice.innerHTML = '?';
     }
+
+    End();
 });
 
-//#####################
-//      END GAME
-//#####################
 
-function End() {
-    if(globalScore[0] || globalScore[1] >= 100) {
-    
-    }
-}
+
 
 /*
 NOTES:

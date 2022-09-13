@@ -7,9 +7,10 @@
     <script src="https://kit.fontawesome.com/abab09da6b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#"> <!--Patch error 404 favicon not found-->
     <title>Dice Game</title>
 </head>
-<body class="bg-dark">
+<body>
     <header class="navbar justify-content-center align-content-center bg-opacity-25 bg-secondary text-white">
         <div>
             <div class="title">
@@ -17,12 +18,15 @@
             </div>
         </div>
     </header>
-    <div class="d-flex justify-content-center text-white"><i>Please, click on "?" for start the game.</i></div>
+    <a class="btn text-white gamerules" href="gamerules.html">Gamerules</a>
+    <div class="d-flex justify-content-center text-white">
+      <i>Please, click on "?" to start the game.</i>
+    </div>
     <main class="container">
             <div class="card-group card-height">
                 <div class="card text-white cardone">
                         <div>
-                            <h1 class="card-title player1">PLAYER 1</h1>
+                            <h1 class="card-title title1 text-white">PLAYER 1</h1>
                             <hr>
                             <br>
                             <h3 class="card-text text-white">ROUND</h3>
@@ -34,15 +38,15 @@
                 </div>
                 <div class="dice-card card">
                         <div class="card-body text-white">
+                          <div class="reload btn text-white"><i class="fa-solid fa-arrows-rotate"></i> Restart</div>
                             <p id="playdice">?</p>
                             <br>
-                            <div class="reload btn text-white"><i class="fa-solid fa-arrows-rotate"></i> Restart</div>
                             <div class="hold btn text-white"><i class="fa-solid fa-hand-holding"></i></i> Hold</div>
                         </div>
                 </div>
                 <div class="card text-white cardtwo">
                     <div>
-                        <h1 class="card-title player2">PLAYER 2</h1>
+                        <h1 class="card-title title2 text-white">PLAYER 2</h1>
                         <hr>
                         <br>
                         <h3 class="card-text text-white">ROUND</h3>
@@ -54,9 +58,9 @@
             </div>
         </div>
     </main>
-    <footer class="d-flex justify-content-center text-white">
-        
-    </footer>
+    <!-- <footer class="d-flex justify-content-center text-white">
+      
+    </footer> -->
     <script src="script.js"></script>
 </body>
 </html>
