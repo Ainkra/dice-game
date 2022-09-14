@@ -11,9 +11,9 @@ const global = [ // Select globals score
     document.querySelector(".global2")
 ];
 
-let globalScore = [0, 0]; // globalscore storage
-let roundScore = [0, 0];  // roundscore storage
-let playerTurn = 0;       // playerturn storage
+let globalScore = [0, 0]; // globals-core storage
+let roundScore = [0, 0];  // rounds-core storage
+let playerTurn = 0;       // player turn storage
 let randomizer;           // randomizer storage
 
 /*###############
@@ -85,7 +85,7 @@ reload.addEventListener("click", () => { // Reload handler
 //    DICE ROLLING
 //#####################
 playDice.addEventListener("click", () => {
-    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice.    
+    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice.
 
     switch(randomizer) {
         case 1:
@@ -107,7 +107,7 @@ playDice.addEventListener("click", () => {
                 cardTwo.classList.remove("bg-success")
             }
             break;
-            
+
         case 2:
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
@@ -117,7 +117,7 @@ playDice.addEventListener("click", () => {
                 diceAudio.play();
             }
             break;
-            
+
         case 3:
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
