@@ -21,8 +21,8 @@ BUTTONS SELECTORS
 #################*/
 const playDice  = document.querySelector(".playdice"); // Select the dice
 const hold      = document.querySelector(".hold");     // Select hold button
-const cardone   = document.querySelector(".cardone");  // Select first card
-const cardtwo   = document.querySelector(".cardtwo")   // Select second card
+const cardOne   = document.querySelector(".cardone");  // Select first card
+const cardTwo   = document.querySelector(".cardtwo")   // Select second card
 
 /*###############
     AUDIO
@@ -45,7 +45,7 @@ function Init() { // Allow init the game.
   globalScore[1]       = 0;
   roundScore[0]        = 0;
   roundScore[1]        = 0;
-  cardone.classList.remove("bg-success");
+  cardOne.classList.remove("bg-success");
 }
 
 Init(); // Call game init
@@ -53,25 +53,20 @@ Init(); // Call game init
 //#####################
 //      END GAME
 //#####################
-function ClearGame() { // Allows to remove the losing player's background
-  cardone.classList.remove("bg-danger");
-  cardtwo.classList.remove("bg-danger");
-}
-
 function Refresh() { // Refresh the page
   location.reload();
 }
 
 function End() { // End the game
   if(globalScore[0] >= 100)  { 
-    cardtwo.classList.add("bg-danger"); // Add red background at second player
-    cardone.classList.add("bg-success"); // Add green background at first player
+    cardTwo.classList.add("bg-danger"); // Add red background at second player
+    cardOne.classList.add("bg-success"); // Add green background at first player
     winAudio.play(); // Play win sound
     setTimeout(Refresh, 3000); // Refresh the page in 3 seconds
-// etc..
+// etc.
   } else if(globalScore[1] >= 100) {
-    cardone.classList.add("bg-danger");
-    cardtwo.classList.add("bg-success");
+    cardOne.classList.add("bg-danger");
+    cardTwo.classList.add("bg-success");
     winAudio.play();
     setTimeout(Refresh, 3000);
   }
@@ -100,16 +95,16 @@ playDice.addEventListener("click", () => {
                 roundScore[0] = 0; // reset roundscore
                 playerTurn = 1; // Turn change
                 randomizer = 0; // Reset randomizer
-                cardtwo.classList.add("bg-success") // Change bg color
-                cardone.classList.remove("bg-success")
+                cardTwo.classList.add("bg-success") // Change bg color
+                cardOne.classList.remove("bg-success")
             } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
                 round[1].innerHTML = 0; // DOM add dice img.
                 roundScore[1] = 0;
                 playerTurn = 0;
                 randomizer = 0;
-                cardone.classList.add("bg-success")
-                cardtwo.classList.remove("bg-success")
+                cardOne.classList.add("bg-success")
+                cardTwo.classList.remove("bg-success")
             }
             break;
             
@@ -185,8 +180,8 @@ hold.addEventListener("click", () =>  {
         randomizer = 0; // Reset randomizer
         round[0].innerHTML = 0; // Display 0 for round
         playerTurn = 1; // Change player turn
-        cardtwo.classList.add("bg-success"); // green bg at player's turn
-        cardone.classList.remove("bg-success"); // remove green bg to the player of the previous round
+        cardTwo.classList.add("bg-success"); // green bg at player's turn
+        cardOne.classList.remove("bg-success"); // remove green bg to the player of the previous round
         playDice.innerHTML = '?'; // Display ? on the dice
         roundScore[0] = 0; // Reset roundscore
     } else {
@@ -195,8 +190,8 @@ hold.addEventListener("click", () =>  {
         round[1].innerHTML = 0;
         randomizer = 0;
         playerTurn = 0;
-        cardtwo.classList.remove("bg-success");
-        cardone.classList.add("bg-success");
+        cardTwo.classList.remove("bg-success");
+        cardOne.classList.add("bg-success");
         playDice.innerHTML = '?';
         roundScore[1] = 0;
     }
