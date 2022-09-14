@@ -27,8 +27,8 @@ const cardtwo   = document.querySelector(".cardtwo")   // Select second card
 /*###############
     AUDIO
 #################*/
-const diceAudio = new Audio('./sounds/dice.mp3'); // Dice sound 
-const winAudio = new Audio('./sounds/win.mp3');   // Win sound
+const diceAudio = new Audio('./resources/sounds/dice.mp3'); // Dice sound 
+const winAudio = new Audio('./resources/sounds/win.mp3');   // Win sound
 
 //#####################
 //  INIT FUNCTION
