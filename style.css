@@ -17,7 +17,6 @@ body {
     min-height: 100vh;
     font-family: Lato, Helvetica, sans-serif;
     background: rgb(138, 137, 137);
-    /* background-image: url(image/bg.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 0;
@@ -31,6 +30,7 @@ body {
 
 .navbar {
     padding-top: -10%;
+    background:rgb(56, 53, 65);
 }
 
 .card-group {
@@ -56,15 +56,16 @@ body {
     text-align: center;
 }
 
-#playdice {
-    font-size: 75px;
-    border-radius: 10px;
-    margin: 10;
+.playdice {
+    font-size: 100px;
+    background: rgb(138, 137, 137);
+    animation: 3s linear 1s slidein;
 }
 
-#playdice:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.playdice:hover {
+  background: rgb(122, 122, 122);
 }
+
 
 .reload {
     background-color: rgb(76, 43, 199);
@@ -75,10 +76,6 @@ body {
 
 .reload:hover {
     background-color: rgb(121, 175, 255);
-}
-
-footer {
-    margin-top: 10px;
 }
 
 .hold {
@@ -97,8 +94,7 @@ footer {
   display: flex;
   justify-content: center;
   font-weight: bold;
-  background-color: rgb(54, 54, 54, 0.4);
-  border-radius: 0;
+  background-color: rgb(76, 72, 88);
 }
 
 .gamerules:hover {
@@ -108,9 +104,5 @@ footer {
 .cardone {
   width: 100%;
 }
-
-/* .round2 {
-  margin-top
-} */
 
 

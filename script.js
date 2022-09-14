@@ -1,144 +1,106 @@
 //#####################
-//  RESSOURCES:
-//
-//  <i class="fa-solid fa-dice-one"></i>
-//  <i class="fa-solid fa-dice-two"></i>
-//  <i class="fa-solid fa-dice-three"></i>
-//  <i class="fa-solid fa-dice-four"></i>
-//  <i class="fa-solid fa-dice-five"></i>
-//  <i class="fa-solid fa-dice-six"></i>
-//#####################
-
-
-//#####################
 //  SCORES QUERY SELECTORS
 //#####################
-
-var round = [
+const round = [ // Select rounds score
     document.querySelector(".round1"),
     document.querySelector(".round2")
 ];
 
-var global = [
+const global = [ // Select globals score
     document.querySelector(".global1"),
     document.querySelector(".global2")
 ];
 
-var globalScore = [
-  0,
-  0
-];
-
-var roundScore = [
-  0,
-  0
-];
-
-var randomizer;
+let globalScore = [0, 0]; // globalscore storage
+let roundScore = [0, 0];  // roundscore storage
+let playerTurn = 0;       // playerturn storage
+let randomizer;           // randomizer storage
 
 /*###############
 BUTTONS SELECTORS
 #################*/
-
-let playDice  = document.querySelector("#playdice");
-let hold      = document.querySelector(".hold");
-let cardone   = document.querySelector(".cardone");
-let cardtwo   = document.querySelector(".cardtwo")
-let playerone = document.querySelector(".player1");
-let playertwo = document.querySelector(".player2")
+const playDice  = document.querySelector(".playdice"); // Select the dice
+const hold      = document.querySelector(".hold");     // Select hold button
+const cardone   = document.querySelector(".cardone");  // Select first card
+const cardtwo   = document.querySelector(".cardtwo")   // Select second card
 
 /*###############
     AUDIO
 #################*/
-
-var diceAudio = new Audio('./sounds/dice.mp3');
-var winAudio = new Audio('./sounds/win.mp3');
+const diceAudio = new Audio('./sounds/dice.mp3'); // Dice sound 
+const winAudio = new Audio('./sounds/win.mp3');   // Win sound
 
 //#####################
 //  INIT FUNCTION
 //#####################
-function Init() {
-    round[0].innerHTML   = 0;
-    round[1].innerHTML   = 0;
-    global[0].innerHTML  = 0;
-    global[1].innerHTML  = 0;
-    playDice.innerHTML   = "?";
-    randomizer           = 0;
-    playerTurn           = 0;
-    globalScore[0]       = 0;
-    globalScore[1]       = 0;
-    roundScore[0]        = 0;
-    roundScore[1]        = 0;
-    cardone.classList.remove("bg-success");
+function Init() { // Allow init the game.
+  round[0].innerHTML   = 0;
+  round[1].innerHTML   = 0;
+  global[0].innerHTML  = 0;
+  global[1].innerHTML  = 0;
+  playDice.innerHTML   = "?";
+  randomizer           = 0;
+  playerTurn           = 0;
+  globalScore[0]       = 0;
+  globalScore[1]       = 0;
+  roundScore[0]        = 0;
+  roundScore[1]        = 0;
+  cardone.classList.remove("bg-success");
 }
 
-Init();
-
-//#####################
-//  TURN STORER
-//#####################
-
-var playerTurn = 0;
+Init(); // Call game init
 
 //#####################
 //      END GAME
 //#####################
-
-function ClearGame() {
+function ClearGame() { // Allows to remove the losing player's background
   cardone.classList.remove("bg-danger");
   cardtwo.classList.remove("bg-danger");
 }
 
-function Refresh() {
+function Refresh() { // Refresh the page
   location.reload();
 }
 
-function End() {
-  if(globalScore[0] >= 100)  {
-    cardtwo.classList.add("bg-danger");
-    cardone.classList.add("bg-success");
-    winAudio.play();
-    setTimeout(Refresh, 3000);
+function End() { // End the game
+  if(globalScore[0] >= 100)  { 
+    cardtwo.classList.add("bg-danger"); // Add red background at second player
+    cardone.classList.add("bg-success"); // Add green background at first player
+    winAudio.play(); // Play win sound
+    setTimeout(Refresh, 3000); // Refresh the page in 3 seconds
+// etc..
   } else if(globalScore[1] >= 100) {
     cardone.classList.add("bg-danger");
     cardtwo.classList.add("bg-success");
     winAudio.play();
     setTimeout(Refresh, 3000);
   }
-
-
-  console.log("Redémarré !")
-
 }
 
 //#####################
 //  RESTART THE GAME
 //#####################
-
-let reload = document.querySelector(".reload").addEventListener("click", () => {
+let reload = document.querySelector(".reload").addEventListener("click", () => { // Reload handler
   location.reload();
 });
 
 //#####################
 //    DICE ROLLING
 //#####################
-
 playDice.addEventListener("click", () => {
-    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice. +1 because we don't want 0.    
-    console.log(`Chiffre obtenu: ${randomizer}`);
+    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice.    
 
     switch(randomizer) {
         case 1:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>'; // inner dice fas-fa
                 round[0].innerHTML = 0; // DOM add dice img.
-                roundScore[0] = 0;
-                playerTurn = 1;
-                randomizer = 0;
-                cardtwo.classList.add("bg-success")
+                roundScore[0] = 0; // reset roundscore
+                playerTurn = 1; // Turn change
+                randomizer = 0; // Reset randomizer
+                cardtwo.classList.add("bg-success") // Change bg color
                 cardone.classList.remove("bg-success")
-                console.log("Au tour du deuxième joueur !")
-            } else if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
                 round[1].innerHTML = 0; // DOM add dice img.
                 roundScore[1] = 0;
@@ -146,7 +108,6 @@ playDice.addEventListener("click", () => {
                 randomizer = 0;
                 cardone.classList.add("bg-success")
                 cardtwo.classList.remove("bg-success")
-                console.log("Au tour du premier joueur !")
             }
             break;
             
@@ -154,9 +115,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
                 diceAudio.play();
-            }
-            
-            if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
                 diceAudio.play();
             }
@@ -166,9 +125,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
                 diceAudio.play();
-            } 
-            
-            if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
                 diceAudio.play();
             }
@@ -178,9 +135,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
                 diceAudio.play();
-            }
-            
-            if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
                 diceAudio.play();
             }
@@ -190,9 +145,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
                 diceAudio.play();
-            } 
-            
-            if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
                 diceAudio.play();
             }
@@ -203,9 +156,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
                 diceAudio.play();
-            } 
-            
-            if(playerTurn === 1) {
+            } else {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
                 diceAudio.play();
             }
@@ -214,36 +165,29 @@ playDice.addEventListener("click", () => {
     }
 
     if (playerTurn === 0) {
-      roundScore[0] = roundScore[0] + randomizer;
-      round[0].innerHTML = roundScore[0];
-    } else if(playerTurn === 1) {
+      roundScore[0] = roundScore[0] + randomizer; // accumulate rounds
+      round[0].innerHTML = roundScore[0]; // Display score
+    } else {
       roundScore[1] = roundScore[1] + randomizer;
       round[1].innerHTML = roundScore[1];
     }
-
 })
-
 
 //#####################
 //  HOLD ROUND POINT
 //#####################
-
-// background-color: rgba(44, 44, 44, 0.2); Not your turn
-// background-color: rgba(0, 255, 157, 0.2); your turn
 hold.addEventListener("click", () =>  {
-
     if(playerTurn === 0) {
-        globalScore[0] = globalScore[0] += roundScore[0];
-        global[0].textContent = globalScore[0];
-        randomizer = 0;
-        round[0].innerHTML = 0;
-        playerTurn = 1;
-        cardtwo.classList.add("bg-success");
-        cardone.classList.remove("bg-success");
-        console.log("Au tour du deuxième joueur !");
-        playDice.innerHTML = '?';
-        roundScore[0] = 0;
-    } else if (playerTurn === 1) {
+        globalScore[0] = globalScore[0] += roundScore[0]; // Add round at global
+        global[0].textContent = globalScore[0]; // Display global score
+        randomizer = 0; // Reset randomizer
+        round[0].innerHTML = 0; // Display 0 for round
+        playerTurn = 1; // Change player turn
+        cardtwo.classList.add("bg-success"); // green bg at player's turn
+        cardone.classList.remove("bg-success"); // remove green bg to the player of the previous round
+        playDice.innerHTML = '?'; // Display ? on the dice
+        roundScore[0] = 0; // Reset roundscore
+    } else {
         globalScore[1] = globalScore[1] += roundScore[1];
         global[1].textContent = globalScore[1];
         round[1].innerHTML = 0;
@@ -251,20 +195,9 @@ hold.addEventListener("click", () =>  {
         playerTurn = 0;
         cardtwo.classList.remove("bg-success");
         cardone.classList.add("bg-success");
-        console.log("Au tour du premier joueur !");
         playDice.innerHTML = '?';
         roundScore[1] = 0;
     }
 
-    End();
+    End(); // call End function
 });
-
-
-
-
-/*
-NOTES:
-
-Voir pour changer la couleur de fond pour chaque joueur
-entrain de jouer.
-*/
