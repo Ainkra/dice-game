@@ -64,6 +64,7 @@ body {
 
 .playdice:hover {
   background: rgb(122, 122, 122);
+  cursor: pointer;
 }
 
 
