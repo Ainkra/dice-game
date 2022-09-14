@@ -80,7 +80,9 @@ function End() { // End the game
 //#####################
 //  RESTART THE GAME
 //#####################
-let reload = document.querySelector(".reload").addEventListener("click", () => { // Reload handler
+let reload = document.querySelector(".reload");
+
+reload.addEventListener("click", () => { // Reload handler
   location.reload();
 });
 
