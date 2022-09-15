@@ -11,15 +11,18 @@
     -ms-user-select: none;
     user-select: none;
     user-select: none;
+    color: rgb(255, 250, 206);
 }
 
 body {
     min-height: 100vh;
     font-family: Lato, Helvetica, sans-serif;
-    background: rgb(138, 137, 137);
+    background: url(resources/img/bg.jpg);
+    object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 0;
+    color: rgb(255, 250, 206);
 }
 
 .title {
@@ -36,20 +39,24 @@ body {
 .card-group {
     border-color: rgb(255, 255, 255);
     padding: -20px;
+    color: rgb(255, 250, 206);
 }
 
 .card {
     background-color: rgba(44, 44, 44, 0.2);
     margin-top: 20px;
+    color: rgb(255, 250, 206);
 }
 
 .dice-card {
     background-color: rgba(44, 44, 44, 0);
+    color: rgb(255, 250, 206);
 }
 
 .card-title {
     margin-top: 5px;
     margin-bottom: -10px;
+    color: rgb(255, 250, 206);
 }
 
 .card-height {
@@ -58,12 +65,12 @@ body {
 
 .playdice {
     font-size: 100px;
-    background: rgb(138, 137, 137);
     animation: 3s linear 1s slidein;
+    color: rgb(255, 250, 206);
 }
 
 .playdice:hover {
-  background: rgb(122, 122, 122);
+  background: rgb(122, 122, 122, 0.5);
   cursor: pointer;
 }
 
@@ -73,6 +80,8 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    color: rgb(255, 250, 206);
+    font-weight: bold;
 }
 
 .reload:hover {
@@ -81,6 +90,8 @@ body {
 
 .hold {
     background-color: #2ECC71;
+    color: rgb(255, 250, 206);
+    font-weight: bold;
 }
 
 .hold:hover {
@@ -96,6 +107,7 @@ body {
   justify-content: center;
   font-weight: bold;
   background-color: rgb(76, 72, 88);
+  color: rgb(255, 250, 206);
 }
 
 .gamerules:hover {

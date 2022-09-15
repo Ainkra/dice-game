@@ -4,57 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/abab09da6b.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="resources/css-framework/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="#"> <!--Patch error 404 favicon not found-->
+    <script src="https://kit.fontawesome.com/abab09da6b.js" crossorigin="anonymous"></script>
     <title>Dice Game</title>
 </head>
-<body>
-    <header class="navbar justify-content-center align-content-center bg-opacity-25 text-white">
+<body href="resources/img/bg.jpg">
+    <header class="navbar justify-content-center align-content-center bg-opacity-25 ">
         <div>
             <div class="title">
                 DICE GAME <i class="fa-solid fa-dice"></i>
             </div>
-            <a class="btn text-white gamerules" href="gamerules.html">Gamerules</a></i>
+            <a class="btn gamerules" href="gamerules.html">Gamerules</a></i>
         </div>
     </header>
     
-    <div class="d-flex justify-content-center text-white fw-bold">
+    <div class="d-flex justify-content-center fw-bold">
       <i>Please, click on "?" to start the game.</i>
     </div>
+    
     <main class="container">
       <div class="card-group card-height">
-        <div class="card text-white cardone">
+        <div class="card cardone">
           <div>
-            <h1 class="card-title title1 text-white">PLAYER 1</h1>
+            <h1 class="card-title title1 ">PLAYER 1</h1>
             <hr>
-            <h3 class="card-text text-white">ROUND</h3>
-            <h4 class="round1 card-text text-white">0</h4>
-            <h3 class="card-text text-white">GLOBAL</h3>
-            <h4 class="global1 card-text text-white">0</h4>
+            <h3 class="card-text">ROUND</h3>
+            <h4 class="round1 card-text ">0</h4>
+            <h3 class="card-text">GLOBAL</h3>
+            <h4 class="global1 card-text ">0</h4>
           </div>
         </div>
         <div class="dice-card card">
-          <div class="card-body text-white">
-            <a class="reload btn text-white"><i class="fa-solid fa-arrows-rotate"></i> Restart</a>
+          <div class="card-body ">
+            <a class="reload btn "><i class="fa-solid fa-arrows-rotate"></i> Restart</a>
               <p class="playdice">?</p>
-            <a class="hold btn text-white"><i class="fa-solid fa-hand-holding"></i></i> Hold</a>
+            <a class="hold btn "><i class="fa-solid fa-hand-holding"></i></i> Hold</a>
           </div>
         </div>
-        <div class="card text-white cardtwo">
+        <div class="card  cardtwo">
           <div>
-            <h1 class="card-title title2 text-white">PLAYER 2</h1>
+            <h1 class="card-title title2 ">PLAYER 2</h1>
             <hr>
-            <h3 class="card-text text-white">ROUND</h3>
-            <h4 class="round2 card-text text-white">0</h4>
-            <h3 class="card-text text-white">GLOBAL</h3>
-            <h4 class="global2 card-text text-white">0</h4>
+            <h3 class="card-text">ROUND</h3>
+            <h4 class="round2 card-text">0</h4>
+            <h3 class="card-text">GLOBAL</h3>
+            <h4 class="global2 card-text">0</h4>
           </div>
         </div>
       </div>
     </main>
-    <!-- <footer class="d-flex justify-content-center text-white">
+    <!-- <footer class="d-flex justify-content-center ">
       
     </footer> -->
     <script src="script.js"></script>
