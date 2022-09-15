@@ -11,6 +11,8 @@ const global = [ // Select globals score
     document.querySelector(".global2")
 ];
 
+let reload = document.querySelector(".reload");
+
 let globalScore = [0, 0]; // globals-core storage
 let roundScore = [0, 0];  // rounds-core storage
 let playerTurn = 0;       // player turn storage
@@ -45,40 +47,37 @@ function Init() { // Allow init the game.
   globalScore[1]       = 0;
   roundScore[0]        = 0;
   roundScore[1]        = 0;
-  cardOne.classList.remove("bg-success");
+  cardOne.classList.remove("bg-success"); // Add green background at first player
+  cardOne.classList.remove("bg-danger"); // Add green background at first player
+  cardTwo.classList.remove("bg-danger"); // Add red background at second player
+  cardTwo.classList.remove("bg-success"); // Add red background at second player
 }
-
-Init(); // Call game init
 
 //#####################
 //      END GAME
 //#####################
-function Refresh() { // Refresh the page
-  location.reload();
-}
 
 function End() { // End the game
   if(globalScore[0] >= 100)  { 
     cardTwo.classList.add("bg-danger"); // Add red background at second player
     cardOne.classList.add("bg-success"); // Add green background at first player
     winAudio.play(); // Play win sound
-    setTimeout(Refresh, 3000); // Refresh the page in 3 seconds
+    setTimeout(Init, 3000); // Refresh the page in 3 seconds
 // etc.
   } else if(globalScore[1] >= 100) {
     cardOne.classList.add("bg-danger");
     cardTwo.classList.add("bg-success");
     winAudio.play();
-    setTimeout(Refresh, 3000);
+    setTimeout(Init, 3000);
   }
 }
 
 //#####################
 //  RESTART THE GAME
 //#####################
-let reload = document.querySelector(".reload");
 
 reload.addEventListener("click", () => { // Reload handler
-  location.reload();
+  Init();
 });
 
 //#####################
