@@ -91,7 +91,7 @@ playDice.addEventListener("click", () => {
             if(playerTurn === 0) {
                 playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>'; // inner dice fas-fa
                 round[0].innerHTML = 0; // DOM add dice img.
-                roundScore[0] = 0; // reset roundscore
+                roundScore[0] = 0; // reset player roundscore
                 playerTurn = 1; // Turn change
                 randomizer = 0; // Reset randomizer
                 cardTwo.classList.add("bg-success") // Change bg color
