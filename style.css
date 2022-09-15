@@ -76,7 +76,9 @@ body {
 
 
 .reload {
-    background-color: rgb(76, 43, 199);
+    background: rgba(199, 53, 43, 0.7);
+    border-color: rgb(199, 53, 43);
+    border-width: 3px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -85,17 +87,19 @@ body {
 }
 
 .reload:hover {
-    background-color: rgb(121, 175, 255);
+    background-color: rgb(255, 153, 0);
 }
 
 .hold {
-    background-color: #2ECC71;
+    border-color: rgb(46, 204, 113);
+    background: rgb(46, 204, 113, 0.7);
+    border-width: 3px;
     color: rgb(255, 250, 206);
     font-weight: bold;
 }
 
 .hold:hover {
-    background-color: rgb(173, 255, 200);
+    background-color: rgb(94, 248, 145);
 }
 
 .global1, .global2 {

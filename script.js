@@ -85,7 +85,7 @@ reload.addEventListener("click", () => { // Reload handler
 //    DICE ROLLING
 //#####################
 playDice.addEventListener("click", () => {
-    randomizer =  Math.floor(Math.random() * 6) + 1; // randomizing result for the dice.
+    randomizer =  Math.floor(Math.random() * 6) + 1; // randomize result for the dice.
 
     switch(randomizer) {
         case 1:
