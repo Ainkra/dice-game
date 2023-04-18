@@ -76,20 +76,22 @@ function End() { // End the game
 //  RESTART THE GAME
 //#####################
 
-reload.addEventListener("click", () => { // Reload handler
-  Init();
-});
+function updateDiceDisplay(diceNumber) {
+    playDice.innerHTML = `<i class="fa-solid fa-dice-${diceNumber}"></i>`;
+    diceAudio.play();
+}
 
 //#####################
 //    DICE ROLLING
 //#####################
 playDice.addEventListener("click", () => {
     randomizer =  Math.floor(Math.random() * 6) + 1; // randomize result for the dice.
+    console.log(randomizer);
 
     switch(randomizer) {
         case 1:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>'; // inner dice fas-fa
+                updateDiceDisplay("one"); // inner dice fas-fa
                 round[0].innerHTML = 0; // DOM add dice img.
                 roundScore[0] = 0; // reset player roundscore
                 playerTurn = 1; // Turn change
@@ -97,7 +99,7 @@ playDice.addEventListener("click", () => {
                 cardTwo.classList.add("bg-success") // Change bg color
                 cardOne.classList.remove("bg-success")
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-one"></i>';
+                updateDiceDisplay("one");
                 round[1].innerHTML = 0; // DOM add dice img.
                 roundScore[1] = 0;
                 playerTurn = 0;
@@ -109,40 +111,40 @@ playDice.addEventListener("click", () => {
 
         case 2:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                updateDiceDisplay("two"); // DOM add dice img.
                 diceAudio.play();
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-two"></i>'; // DOM add dice img.
+                updateDiceDisplay("two"); // DOM add dice img.
                 diceAudio.play();
             }
             break;
 
         case 3:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                updateDiceDisplay("three"); // DOM add dice img.
                 diceAudio.play();
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-three"></i>'; // DOM add dice img.
+                updateDiceDisplay("three"); // DOM add dice img.
                 diceAudio.play();
             }
             break;
 
         case 4:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                updateDiceDisplay("four"); // DOM add dice img.
                 diceAudio.play();
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-four"></i>'; // DOM add dice img.
+                updateDiceDisplay("four"); // DOM add dice img.
                 diceAudio.play();
             }
             break;
 
         case 5:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                updateDiceDisplay("five"); // DOM add dice img.
                 diceAudio.play();
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-five"></i>'; // DOM add dice img.
+                updateDiceDisplay("five"); // DOM add dice img.
                 diceAudio.play();
             }
 
@@ -150,10 +152,10 @@ playDice.addEventListener("click", () => {
 
         case 6:
             if(playerTurn === 0) {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                updateDiceDisplay("six"); // DOM add dice img.
                 diceAudio.play();
             } else {
-                playDice.innerHTML = '<i class="fa-solid fa-dice-six"></i>'; // DOM add dice img.
+                updateDiceDisplay("six"); // DOM add dice img.
                 diceAudio.play();
             }
 
@@ -169,30 +171,33 @@ playDice.addEventListener("click", () => {
     }
 })
 
-//#####################
-//  HOLD ROUND POINT
-//#####################
-hold.addEventListener("click", () =>  {
-    if(playerTurn === 0) {
-        globalScore[0] = globalScore[0] += roundScore[0]; // Add round at global
-        global[0].textContent = globalScore[0]; // Display global score
-        randomizer = 0; // Reset randomizer
-        round[0].innerHTML = 0; // Display 0 for round
-        playerTurn = 1; // Change player turn
+function updateScoresAndSwitchPlayer(currentPlayer) {
+    globalScore[currentPlayer] += roundScore[currentPlayer];
+    global[currentPlayer].textContent = globalScore[currentPlayer];
+    round[currentPlayer].innerHTML = 0;
+    randomizer = 0;
+    roundScore[currentPlayer] = 0;
+    playDice.innerHTML = '?';
+    if(currentPlayer === 0) {
         cardTwo.classList.add("bg-success"); // green bg at player's turn
         cardOne.classList.remove("bg-success"); // remove green bg to the player of the previous round
-        playDice.innerHTML = '?'; // Display ? on the dice
-        roundScore[0] = 0; // Reset roundscore
     } else {
-        globalScore[1] = globalScore[1] += roundScore[1];
-        global[1].textContent = globalScore[1];
-        round[1].innerHTML = 0;
-        randomizer = 0;
-        playerTurn = 0;
         cardTwo.classList.remove("bg-success");
         cardOne.classList.add("bg-success");
-        playDice.innerHTML = '?';
-        roundScore[1] = 0;
+    }
+
+    playerTurn = currentPlayer === 0 ? 1 : 0;
+}
+
+reload.addEventListener("click", () => { // Reload handler
+    Init();
+  });
+
+hold.addEventListener("click", () =>  {
+    if(playerTurn === 0) {
+        updateScoresAndSwitchPlayer(0);
+    } else {
+        updateScoresAndSwitchPlayer(1);
     }
 
     End(); // call End function
