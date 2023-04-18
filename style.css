@@ -122,4 +122,12 @@ body {
   width: 100%;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
+ul {
+    margin-top: 10px;
+}
+
 
